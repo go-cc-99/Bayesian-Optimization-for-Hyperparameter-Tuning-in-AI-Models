@@ -25,7 +25,9 @@ def evaluate(net, dataloader, device, amp):
 
             if net.n_classes == 1:
                 assert mask_true.min() >= 0 and mask_true.max() <= 1, 'True mask indices should be in [0, 1]'
-                mask_pred = (F.sigmoid(mask_pred) > 0.5).float()
+                # mask_pred = (F.sigmoid(mask_pred) > 0.5).float()
+                mask_pred = (torch.sigmoid(mask_pred) > 0.5).float()
+                mask_true = mask_true.unsqueeze(1).float()
                 # compute the Dice score
                 dice_score += dice_coeff(mask_pred, mask_true, reduce_batch_first=False)
             else:
