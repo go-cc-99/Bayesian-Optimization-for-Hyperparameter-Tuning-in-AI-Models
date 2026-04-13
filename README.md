@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # U-Net: Semantic segmentation with PyTorch
 <a href="#"><img src="https://img.shields.io/github/actions/workflow/status/milesial/PyTorch-UNet/main.yml?logo=github&style=for-the-badge" /></a>
 <a href="https://hub.docker.com/r/milesial/unet"><img src="https://img.shields.io/badge/docker%20image-available-blue?logo=Docker&style=for-the-badge" /></a>
@@ -187,3 +188,6 @@ Original paper by Olaf Ronneberger, Philipp Fischer, Thomas Brox:
 [U-Net: Convolutional Networks for Biomedical Image Segmentation](https://arxiv.org/abs/1505.04597)
 
 ![network architecture](https://i.imgur.com/jeDVpqF.png)
+=======
+# Bayesian-Optimization-for-Hyperparameter-Tuning-in-AI-Models
+>>>>>>> 20c04bd2cc80ab6d777fa4e37bd82f1b9bdaa253
