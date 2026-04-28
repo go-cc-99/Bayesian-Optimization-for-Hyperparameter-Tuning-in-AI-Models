@@ -1,0 +1,9 @@
+numpy>=1.24
+pandas>=2.0
+tqdm>=4.66
+
+torch>=2.1
+torch-geometric>=2.5
+
+botorch>=0.10
+gpytorch>=1.11
