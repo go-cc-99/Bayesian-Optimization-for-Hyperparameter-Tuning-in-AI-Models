@@ -165,17 +165,10 @@ def bo_3dcnn_logei_strategy1_with_trace(
         raise RuntimeError("Unable to sample unseen candidates.")
 
     for t in tqdm(range(target_size - init_size), desc=f"BO(seed={seed})", disable=not verbose):
-        # model = SingleTaskGP(
-        #     train_X=X_train, train_Y=Y_train,
-        #     input_transform=Normalize(d=d, bounds=bounds_full),
-        #     outcome_transform=Standardize(m=1),
-        # )
-        
         model = MixedSingleTaskGP(
             train_X=X_train, 
             train_Y=Y_train,
-            cat_dims=cat_dims, # 👉 告诉模型这些是类别变量
-            # 👉 限制 Normalize 只缩放连续维度 (learning_rate, weight_decay)
+            cat_dims=cat_dims, 
             input_transform=Normalize(d=d, indices=cont_idx, bounds=bounds_full),
             outcome_transform=Standardize(m=1),
         )
