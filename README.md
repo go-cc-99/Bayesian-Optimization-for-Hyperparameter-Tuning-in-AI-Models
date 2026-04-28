@@ -97,7 +97,6 @@ The Bayesian optimization components are built with:
 
 - BoTorch
 - GPyTorch
-- PyTorch
 
 
 Model-specific scripts additionally use packages such as scikit-learn, torchvision, torch-geometric, transformers, datasets, Pillow, and matplotlib.
