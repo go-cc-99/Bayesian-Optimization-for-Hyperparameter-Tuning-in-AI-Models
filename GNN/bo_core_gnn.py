@@ -301,7 +301,7 @@ def bo_mixed_logei_strategy1_with_trace(
 
     for i in tqdm(range(init_size), desc="Init eval", disable=not verbose):
         row = init_used.iloc[i]
-        eval_seed = seed * 1000 + i   # init阶段
+        eval_seed = seed * 1000 + i  
         _, acc_i = eval_point(row, eval_seed)
         # _, acc_i = eval_point(row)
         y_acc.append(acc_i)
