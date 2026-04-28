@@ -371,25 +371,8 @@ def bo_mixed_logei_strategy1_with_trace(
             max_batch_size=4096,
         )
 
-        # Map selected tensor back to cand_df by nearest match
-        # dist = (cand_X - cand).abs().sum(dim=1)
         loc = int(torch.argmin((cand_X - cand).abs().sum(dim=1)).item())
         picked_row = cand_df.iloc[loc]
-        
-#         #evaluate the loc 4.26
-#         min_dist = float(dist[loc].item())
-
-#         top2 = torch.topk(dist, k=min(2, len(dist)), largest=False)
-#         second_dist = float(top2.values[1].item()) if len(dist) > 1 else float("inf")
-
-#         print(
-#             f"[candidate match] loc={loc}, "
-#             f"min_dist={min_dist:.12g}, "
-#             f"second_dist={second_dist:.12g}, "
-#             f"gap={second_dist - min_dist:.12g}"
-#         )
-#         print("[picked_row]")
-#         print(cand_df.iloc[loc])
 
         eval_seed = seed * 1000 + init_size + t
         _, acc_new = eval_point(picked_row, eval_seed)
