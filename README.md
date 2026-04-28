@@ -76,7 +76,9 @@ If you need GPU acceleration, install the PyTorch build that matches your CUDA v
 
 ## Running Experiments
 
-Each model folder contains its own BO runner. Example commands:
+Each model folder contains its own baseline runner and Bayesian optimization runner. These scripts usually require dataset paths, initialization CSV files, output directories, and random seeds, so they should not be launched as bare `python script.py` commands.
+
+Use `--help` only to inspect the available arguments:
 
 ```bash
 python 3DCNN/run_bo_3dcnn.py --help
@@ -84,6 +86,32 @@ python GNN/run_bo_gnn.py --help
 python Pythia/run_bo_gpt_tinystories.py --help
 python UNet/run_bo_unet.py --help
 ```
+
+For actual experiments, use the corresponding `sbatch` script if running on a cluster, or pass the required arguments explicitly. A typical baseline command has the following form:
+
+```bash
+python baseline.py \
+  --init_csv "${INIT_CSV_PATH}" \
+  --out_dir "${BASELINE_OUT_DIR}" \
+  --inputs_path "${INPUTS_PATH}" \
+  --labels_path "${LABELS_PATH}" \
+  --seed 42
+```
+
+A typical BO command similarly needs the output directory, data paths, evaluation budget, and seed settings. For example:
+
+```bash
+python run_bo_*.py \
+  --out_dir "${BO_OUT_DIR}" \
+  --inputs_path "${INPUTS_PATH}" \
+  --labels_path "${LABELS_PATH}" \
+  --target_size 30 \
+  --init_size 10 \
+  --candidate_batch 2048 \
+  --seed 42
+```
+
+Exact argument names can differ slightly across model folders. Check the folder-specific runner or sbatch file before launching a job.
 
 Typical outputs include:
 
@@ -97,6 +125,7 @@ The Bayesian optimization components are built with:
 
 - BoTorch
 - GPyTorch
+- PyTorch
 
 
 Model-specific scripts additionally use packages such as scikit-learn, torchvision, torch-geometric, transformers, datasets, Pillow, and matplotlib.
